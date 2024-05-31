@@ -1,0 +1,967 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css">
+        <link rel="stylesheet" href="css/qgis2web.css">
+        <style>
+        html, body, #map {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+        </style>
+        <title>SANTA CRUZ - EMERGENCIA</title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script src="data/Zonas_de_Influencia_0.js"></script>
+        <script src="data/red_nacional_1.js"></script>
+        <script src="data/red_provincial_2.js"></script>
+        <script src="data/Puertos_3.js"></script>
+        <script src="data/PasosdeFronterasInternacionales_4.js"></script>
+        <script src="data/terminales_omnibus_5.js"></script>
+        <script src="data/puestos_agvp_6.js"></script>
+        <script src="data/Aerdromosyaeropuertos_7.js"></script>
+        <script src="data/hospitales_sc_v1_8.js"></script>
+        <script src="data/helipuertos_9.js"></script>
+        <script src="data/localidades_10.js"></script>
+        <script>
+        var map = L.map('map', {
+            zoomControl:true, maxZoom:28, minZoom:1
+        }).fitBounds([[-52.2579737842,-74.7741024275],[-46.1957876952,-64.6923046614]]);
+        var hash = new L.Hash(map);
+        map.attributionControl.addAttribution('<a href="https://www.santacruz.gob.ar/" target="_blank">Provincia de Santa Cruz</a>');
+        var bounds_group = new L.featureGroup([]);
+        var basemap0 = L.tileLayer('http://www.google.cn/maps/vt?lyrs=s@189&gl=cn&x={x}&y={y}&z={z}', {
+            
+            maxZoom: 28
+        });
+        basemap0.addTo(map);
+        var basemap1 = L.tileLayer('https://wms.ign.gob.ar/geoserver/gwc/service/tms/1.0.0/capabaseargenmap@EPSG%3A3857@png/{z}/{x}/{-y}.png', {
+           
+            maxZoom: 28
+        });
+        basemap1.addTo(map);
+        function setBounds() {
+        }
+        function pop_Zonas_de_Influencia_0(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">Id</th>\
+                        <td>' + (feature.properties['Id'] !== null ? Autolinker.link(String(feature.properties['Id'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">fna</th>\
+                        <td>' + (feature.properties['fna'] !== null ? Autolinker.link(String(feature.properties['fna'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">zna</th>\
+                        <td>' + (feature.properties['zna'] !== null ? Autolinker.link(String(feature.properties['zna'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">sede</th>\
+                        <td>' + (feature.properties['sede'] !== null ? Autolinker.link(String(feature.properties['sede'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">distrito</th>\
+                        <td>' + (feature.properties['distrito'] !== null ? Autolinker.link(String(feature.properties['distrito'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Zonas_de_Influencia_0_0() {
+            return {
+                pane: 'pane_Zonas_de_Influencia_0',
+                opacity: 1,
+                color: 'rgba(51,160,44,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(183,191,30,0.0)',
+            }
+        }
+        map.createPane('pane_Zonas_de_Influencia_0');
+        map.getPane('pane_Zonas_de_Influencia_0').style.zIndex = 400;
+        map.getPane('pane_Zonas_de_Influencia_0').style['mix-blend-mode'] = 'normal';
+        var layer_Zonas_de_Influencia_0 = new L.geoJson(json_Zonas_de_Influencia_0, {
+            attribution: '<a href=""></a>',
+            pane: 'pane_Zonas_de_Influencia_0',
+            onEachFeature: pop_Zonas_de_Influencia_0,
+            style: style_Zonas_de_Influencia_0_0,
+        });
+        bounds_group.addLayer(layer_Zonas_de_Influencia_0);
+        function pop_red_nacional_1(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">id</th>\
+                        <td>' + (feature.properties['id'] !== null ? Autolinker.link(String(feature.properties['id'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">nombre_cor</th>\
+                        <td>' + (feature.properties['nombre_cor'] !== null ? Autolinker.link(String(feature.properties['nombre_cor'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">nombre_lar</th>\
+                        <td>' + (feature.properties['nombre_lar'] !== null ? Autolinker.link(String(feature.properties['nombre_lar'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">descripcio</th>\
+                        <td>' + (feature.properties['descripcio'] !== null ? Autolinker.link(String(feature.properties['descripcio'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">tipo</th>\
+                        <td>' + (feature.properties['tipo'] !== null ? Autolinker.link(String(feature.properties['tipo'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_red_nacional_1_0() {
+            return {
+                pane: 'pane_red_nacional_1',
+                opacity: 1,
+                color: 'rgba(227,26,28,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 1.0,
+                fillOpacity: 0,
+            }
+        }
+        map.createPane('pane_red_nacional_1');
+        map.getPane('pane_red_nacional_1').style.zIndex = 401;
+        map.getPane('pane_red_nacional_1').style['mix-blend-mode'] = 'normal';
+        var layer_red_nacional_1 = new L.geoJson(json_red_nacional_1, {
+            attribution: '<a href=""></a>',
+            pane: 'pane_red_nacional_1',
+            onEachFeature: pop_red_nacional_1,
+            style: style_red_nacional_1_0,
+        });
+        bounds_group.addLayer(layer_red_nacional_1);
+        map.addLayer(layer_red_nacional_1);
+        function pop_red_provincial_2(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">prv</th>\
+                        <td>' + (feature.properties['prv'] !== null ? Autolinker.link(String(feature.properties['prv'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">rtn</th>\
+                        <td>' + (feature.properties['rtn'] !== null ? Autolinker.link(String(feature.properties['rtn'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">tramo</th>\
+                        <td>' + (feature.properties['tramo'] !== null ? Autolinker.link(String(feature.properties['tramo'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">inicio</th>\
+                        <td>' + (feature.properties['inicio'] !== null ? Autolinker.link(String(feature.properties['inicio'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">fin</th>\
+                        <td>' + (feature.properties['fin'] !== null ? Autolinker.link(String(feature.properties['fin'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">longitud</th>\
+                        <td>' + (feature.properties['longitud'] !== null ? Autolinker.link(String(feature.properties['longitud'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">departamen</th>\
+                        <td>' + (feature.properties['departamen'] !== null ? Autolinker.link(String(feature.properties['departamen'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">zna_inf</th>\
+                        <td>' + (feature.properties['zna_inf'] !== null ? Autolinker.link(String(feature.properties['zna_inf'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">cabecera</th>\
+                        <td>' + (feature.properties['cabecera'] !== null ? Autolinker.link(String(feature.properties['cabecera'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">typ</th>\
+                        <td>' + (feature.properties['typ'] !== null ? Autolinker.link(String(feature.properties['typ'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">rst</th>\
+                        <td>' + (feature.properties['rst'] !== null ? Autolinker.link(String(feature.properties['rst'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">jer</th>\
+                        <td>' + (feature.properties['jer'] !== null ? Autolinker.link(String(feature.properties['jer'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">hct</th>\
+                        <td>' + (feature.properties['hct'] !== null ? Autolinker.link(String(feature.properties['hct'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">fdc</th>\
+                        <td>' + (feature.properties['fdc'] !== null ? Autolinker.link(String(feature.properties['fdc'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">superpone</th>\
+                        <td>' + (feature.properties['superpone'] !== null ? Autolinker.link(String(feature.properties['superpone'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">anterior</th>\
+                        <td>' + (feature.properties['anterior'] !== null ? Autolinker.link(String(feature.properties['anterior'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">resolucion</th>\
+                        <td>' + (feature.properties['resolucion'] !== null ? Autolinker.link(String(feature.properties['resolucion'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">decreto</th>\
+                        <td>' + (feature.properties['decreto'] !== null ? Autolinker.link(String(feature.properties['decreto'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">CRS</th>\
+                        <td>' + (feature.properties['CRS'] !== null ? Autolinker.link(String(feature.properties['CRS'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">a�o</th>\
+                        <td>' + (feature.properties['a�o'] !== null ? Autolinker.link(String(feature.properties['a�o'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_red_provincial_2_0() {
+            return {
+                pane: 'pane_red_provincial_2',
+                opacity: 1,
+                color: 'rgba(255,127,0,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 1.0,
+                fillOpacity: 0,
+            }
+        }
+        map.createPane('pane_red_provincial_2');
+        map.getPane('pane_red_provincial_2').style.zIndex = 402;
+        map.getPane('pane_red_provincial_2').style['mix-blend-mode'] = 'normal';
+        var layer_red_provincial_2 = new L.geoJson(json_red_provincial_2, {
+            attribution: '<a href=""></a>',
+            pane: 'pane_red_provincial_2',
+            onEachFeature: pop_red_provincial_2,
+            style: style_red_provincial_2_0,
+        });
+        bounds_group.addLayer(layer_red_provincial_2);
+        map.addLayer(layer_red_provincial_2);
+        function pop_Puertos_3(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">Long_x</th>\
+                        <td>' + (feature.properties['longitud_x'] !== null ? Autolinker.link(String(feature.properties['longitud_x'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Lat_Y</th>\
+                        <td>' + (feature.properties['latitud_y'] !== null ? Autolinker.link(String(feature.properties['latitud_y'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Ubicación</th>\
+                        <td>' + (feature.properties['pto_ub'] !== null ? Autolinker.link(String(feature.properties['pto_ub'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Puerto</th>\
+                        <td>' + (feature.properties['pto_sc'] !== null ? Autolinker.link(String(feature.properties['pto_sc'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Jefe de Puerto</th>\
+                        <td>' + (feature.properties['jef_pto'] !== null ? Autolinker.link(String(feature.properties['jef_pto'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Contacto</th>\
+                        <td>' + (feature.properties['pto_Cont'] !== null ? Autolinker.link(String(feature.properties['pto_Cont'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Frente de Ataque</th>\
+                        <td>' + (feature.properties['pto_Fataq'] !== null ? Autolinker.link(String(feature.properties['pto_Fataq'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Profundidad</th>\
+                        <td>' + (feature.properties['pto_Prof'] !== null ? Autolinker.link(String(feature.properties['pto_Prof'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Balizamiento</th>\
+                        <td>' + (feature.properties['Puertos_Ba'] !== null ? Autolinker.link(String(feature.properties['Puertos_Ba'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Serv. Propios</th>\
+                        <td>' + (feature.properties['serv_prop'] !== null ? Autolinker.link(String(feature.properties['serv_prop'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Serv. Terceros</th>\
+                        <td>' + (feature.properties['serv_ter'] !== null ? Autolinker.link(String(feature.properties['serv_ter'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Web de Interés</th>\
+                        <td>' + (feature.properties['web_int'] !== null ? Autolinker.link(String(feature.properties['web_int'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Puertos_3_0() {
+            return {
+                pane: 'pane_Puertos_3',
+        rotationAngle: 0.0,
+        rotationOrigin: 'center center',
+        icon: L.icon({
+            iconUrl: 'markers/Puerto.svg',
+            iconSize: [30.4, 30.4]
+        }),
+            }
+        }
+        map.createPane('pane_Puertos_3');
+        map.getPane('pane_Puertos_3').style.zIndex = 403;
+        map.getPane('pane_Puertos_3').style['mix-blend-mode'] = 'normal';
+        var layer_Puertos_3 = new L.geoJson(json_Puertos_3, {
+            attribution: '<a href=""></a>',
+            pane: 'pane_Puertos_3',
+            onEachFeature: pop_Puertos_3,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.marker(latlng, style_Puertos_3_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_Puertos_3);
+        function pop_PasosdeFronterasInternacionales_4(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">id</th>\
+                        <td>' + (feature.properties['gid'] !== null ? Autolinker.link(String(feature.properties['gid'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Nombre</th>\
+                        <td>' + (feature.properties['nom_pfi'] !== null ? Autolinker.link(String(feature.properties['nom_pfi'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Categoria</th>\
+                        <td>' + (feature.properties['cat_pfi'] !== null ? Autolinker.link(String(feature.properties['cat_pfi'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Region</th>\
+                        <td>' + (feature.properties['region'] !== null ? Autolinker.link(String(feature.properties['region'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Provincia</th>\
+                        <td>' + (feature.properties['prov'] !== null ? Autolinker.link(String(feature.properties['prov'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Departamento</th>\
+                        <td>' + (feature.properties['depto'] !== null ? Autolinker.link(String(feature.properties['depto'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Municipio Cercano</th>\
+                        <td>' + (feature.properties['muni'] !== null ? Autolinker.link(String(feature.properties['muni'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Lat</th>\
+                        <td>' + (feature.properties['lat_pfi'] !== null ? Autolinker.link(String(feature.properties['lat_pfi'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Long</th>\
+                        <td>' + (feature.properties['lon_pfi'] !== null ? Autolinker.link(String(feature.properties['lon_pfi'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Tipo de Cruce</th>\
+                        <td>' + (feature.properties['cruce_pfi'] !== null ? Autolinker.link(String(feature.properties['cruce_pfi'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">hab_migr</th>\
+                        <td>' + (feature.properties['hab_migr'] !== null ? Autolinker.link(String(feature.properties['hab_migr'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">mod_migr</th>\
+                        <td>' + (feature.properties['mod_migr'] !== null ? Autolinker.link(String(feature.properties['mod_migr'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">espec</th>\
+                        <td>' + (feature.properties['espec'] !== null ? Autolinker.link(String(feature.properties['espec'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Pais Vecino</th>\
+                        <td>' + (feature.properties['pvecino'] !== null ? Autolinker.link(String(feature.properties['pvecino'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">info Nac</th>\
+                        <td>' + (feature.properties['nacion'] !== null ? Autolinker.link(String(feature.properties['nacion'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Ver Estado</th>\
+                        <td>' + (feature.properties['estado'] !== null ? Autolinker.link(String(feature.properties['estado'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_PasosdeFronterasInternacionales_4_0() {
+            return {
+                pane: 'pane_PasosdeFronterasInternacionales_4',
+        rotationAngle: 0.0,
+        rotationOrigin: 'center center',
+        icon: L.icon({
+            iconUrl: 'markers/Pasos de Fronteras Internacionales.svg',
+            iconSize: [34.2, 34.2]
+        }),
+            }
+        }
+        map.createPane('pane_PasosdeFronterasInternacionales_4');
+        map.getPane('pane_PasosdeFronterasInternacionales_4').style.zIndex = 404;
+        map.getPane('pane_PasosdeFronterasInternacionales_4').style['mix-blend-mode'] = 'normal';
+        var layer_PasosdeFronterasInternacionales_4 = new L.geoJson(json_PasosdeFronterasInternacionales_4, {
+            attribution: '<a href=""></a>',
+            pane: 'pane_PasosdeFronterasInternacionales_4',
+            onEachFeature: pop_PasosdeFronterasInternacionales_4,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.marker(latlng, style_PasosdeFronterasInternacionales_4_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_PasosdeFronterasInternacionales_4);
+        function pop_terminales_omnibus_5(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">Ciudad</th>\
+                        <td>' + (feature.properties['localidad'] !== null ? Autolinker.link(String(feature.properties['localidad'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Direccion</th>\
+                        <td>' + (feature.properties['domicilio'] !== null ? Autolinker.link(String(feature.properties['domicilio'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Jefe de Terminal</th>\
+                        <td>' + (feature.properties['jef_term'] !== null ? Autolinker.link(String(feature.properties['jef_term'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Telefono</th>\
+                        <td>' + (feature.properties['telefono'] !== null ? Autolinker.link(String(feature.properties['telefono'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Servicios</th>\
+                        <td>' + (feature.properties['serv'] !== null ? Autolinker.link(String(feature.properties['serv'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Darsenas</th>\
+                        <td>' + (feature.properties['dars'] !== null ? Autolinker.link(String(feature.properties['dars'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Lineas Reg. Provinciales</th>\
+                        <td>' + (feature.properties['lr_prov'] !== null ? Autolinker.link(String(feature.properties['lr_prov'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Lineas Reg.Nacionales</th>\
+                        <td>' + (feature.properties['lr_nac'] !== null ? Autolinker.link(String(feature.properties['lr_nac'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_terminales_omnibus_5_0() {
+            return {
+                pane: 'pane_terminales_omnibus_5',
+        rotationAngle: 0.0,
+        rotationOrigin: 'center center',
+        icon: L.icon({
+            iconUrl: 'markers/transport_bus_stop.svg',
+            iconSize: [30.4, 30.4]
+        }),
+            }
+        }
+        map.createPane('pane_terminales_omnibus_5');
+        map.getPane('pane_terminales_omnibus_5').style.zIndex = 405;
+        map.getPane('pane_terminales_omnibus_5').style['mix-blend-mode'] = 'normal';
+        var layer_terminales_omnibus_5 = new L.geoJson(json_terminales_omnibus_5, {
+            attribution: '<a href=""></a>',
+            pane: 'pane_terminales_omnibus_5',
+            onEachFeature: pop_terminales_omnibus_5,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.marker(latlng, style_terminales_omnibus_5_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_terminales_omnibus_5);
+        function pop_puestos_agvp_6(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">nam</th>\
+                        <td>' + (feature.properties['nam'] !== null ? Autolinker.link(String(feature.properties['nam'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">fna</th>\
+                        <td>' + (feature.properties['fna'] !== null ? Autolinker.link(String(feature.properties['fna'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">departamen</th>\
+                        <td>' + (feature.properties['departamen'] !== null ? Autolinker.link(String(feature.properties['departamen'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">clase</th>\
+                        <td>' + (feature.properties['clase'] !== null ? Autolinker.link(String(feature.properties['clase'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">dependenci</th>\
+                        <td>' + (feature.properties['dependenci'] !== null ? Autolinker.link(String(feature.properties['dependenci'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">zna_inf</th>\
+                        <td>' + (feature.properties['zna_inf'] !== null ? Autolinker.link(String(feature.properties['zna_inf'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">direc</th>\
+                        <td>' + (feature.properties['direc'] !== null ? Autolinker.link(String(feature.properties['direc'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">tel</th>\
+                        <td>' + (feature.properties['tel'] !== null ? Autolinker.link(String(feature.properties['tel'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_puestos_agvp_6_0() {
+            return {
+                pane: 'pane_puestos_agvp_6',
+        rotationAngle: 0.0,
+        rotationOrigin: 'center center',
+        icon: L.icon({
+            iconUrl: 'markers/edificio_gubernamental.svg',
+            iconSize: [30.4, 30.4]
+        }),
+            }
+        }
+        map.createPane('pane_puestos_agvp_6');
+        map.getPane('pane_puestos_agvp_6').style.zIndex = 406;
+        map.getPane('pane_puestos_agvp_6').style['mix-blend-mode'] = 'normal';
+        var layer_puestos_agvp_6 = new L.geoJson(json_puestos_agvp_6, {
+            attribution: '<a href=""></a>',
+            pane: 'pane_puestos_agvp_6',
+            onEachFeature: pop_puestos_agvp_6,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.marker(latlng, style_puestos_agvp_6_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_puestos_agvp_6);
+        function pop_Aerdromosyaeropuertos_7(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">nombre</th>\
+                        <td>' + (feature.properties['nombre'] !== null ? Autolinker.link(String(feature.properties['nombre'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">localidad</th>\
+                        <td>' + (feature.properties['localidad'] !== null ? Autolinker.link(String(feature.properties['localidad'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">jefe_aerop</th>\
+                        <td>' + (feature.properties['jefe_aerop'] !== null ? Autolinker.link(String(feature.properties['jefe_aerop'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">tel</th>\
+                        <td>' + (feature.properties['tel'] !== null ? Autolinker.link(String(feature.properties['tel'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">cod</th>\
+                        <td>' + (feature.properties['cod'] !== null ? Autolinker.link(String(feature.properties['cod'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">pista</th>\
+                        <td>' + (feature.properties['pista'] !== null ? Autolinker.link(String(feature.properties['pista'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">orient</th>\
+                        <td>' + (feature.properties['orient'] !== null ? Autolinker.link(String(feature.properties['orient'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">elevac</th>\
+                        <td>' + (feature.properties['elevac'] !== null ? Autolinker.link(String(feature.properties['elevac'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">superf_pis</th>\
+                        <td>' + (feature.properties['superf_pis'] !== null ? Autolinker.link(String(feature.properties['superf_pis'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">latitud</th>\
+                        <td>' + (feature.properties['latitud'] !== null ? Autolinker.link(String(feature.properties['latitud'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">longitud</th>\
+                        <td>' + (feature.properties['longitud'] !== null ? Autolinker.link(String(feature.properties['longitud'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">tipos_avio</th>\
+                        <td>' + (feature.properties['tipos_avio'] !== null ? Autolinker.link(String(feature.properties['tipos_avio'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">serv_sei</th>\
+                        <td>' + (feature.properties['serv_sei'] !== null ? Autolinker.link(String(feature.properties['serv_sei'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">serv_sant</th>\
+                        <td>' + (feature.properties['serv_sant'] !== null ? Autolinker.link(String(feature.properties['serv_sant'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">vor</th>\
+                        <td>' + (feature.properties['vor'] !== null ? Autolinker.link(String(feature.properties['vor'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">vhf</th>\
+                        <td>' + (feature.properties['vhf'] !== null ? Autolinker.link(String(feature.properties['vhf'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">baliza</th>\
+                        <td>' + (feature.properties['baliza'] !== null ? Autolinker.link(String(feature.properties['baliza'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">notam_vig</th>\
+                        <td>' + (feature.properties['notam_vig'] !== null ? Autolinker.link(String(feature.properties['notam_vig'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">web_int</th>\
+                        <td>' + (feature.properties['web_int'] !== null ? Autolinker.link(String(feature.properties['web_int'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">ayud_visu</th>\
+                        <td>' + (feature.properties['ayud_visu'] !== null ? Autolinker.link(String(feature.properties['ayud_visu'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Aerdromosyaeropuertos_7_0() {
+            return {
+                pane: 'pane_Aerdromosyaeropuertos_7',
+        rotationAngle: 0.0,
+        rotationOrigin: 'center center',
+        icon: L.icon({
+            iconUrl: 'markers/Aeropuerto.svg',
+            iconSize: [30.4, 30.4]
+        }),
+            }
+        }
+        map.createPane('pane_Aerdromosyaeropuertos_7');
+        map.getPane('pane_Aerdromosyaeropuertos_7').style.zIndex = 407;
+        map.getPane('pane_Aerdromosyaeropuertos_7').style['mix-blend-mode'] = 'normal';
+        var layer_Aerdromosyaeropuertos_7 = new L.geoJson(json_Aerdromosyaeropuertos_7, {
+            attribution: '<a href=""></a>',
+            pane: 'pane_Aerdromosyaeropuertos_7',
+            onEachFeature: pop_Aerdromosyaeropuertos_7,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.marker(latlng, style_Aerdromosyaeropuertos_7_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_Aerdromosyaeropuertos_7);
+        map.addLayer(layer_Aerdromosyaeropuertos_7);
+        function pop_hospitales_sc_v1_8(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">id</th>\
+                        <td>' + (feature.properties['id'] !== null ? Autolinker.link(String(feature.properties['id'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">LOCALIDAD</th>\
+                        <td>' + (feature.properties['localidad'] !== null ? Autolinker.link(String(feature.properties['localidad'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">hospital</th>\
+                        <td>' + (feature.properties['hospital'] !== null ? Autolinker.link(String(feature.properties['hospital'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">complejidad</th>\
+                        <td>' + (feature.properties['complejida'] !== null ? Autolinker.link(String(feature.properties['complejida'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">zona</th>\
+                        <td>' + (feature.properties['zona'] !== null ? Autolinker.link(String(feature.properties['zona'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Total de Camas</th>\
+                        <td>' + (feature.properties['total_cama'] !== null ? Autolinker.link(String(feature.properties['total_cama'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">camas cirugia</th>\
+                        <td>' + (feature.properties['cam_cirug'] !== null ? Autolinker.link(String(feature.properties['cam_cirug'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">camas clinica medica</th>\
+                        <td>' + (feature.properties['cam_climed'] !== null ? Autolinker.link(String(feature.properties['cam_climed'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">camas geriatria</th>\
+                        <td>' + (feature.properties['cam_geriat'] !== null ? Autolinker.link(String(feature.properties['cam_geriat'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">camas emergencia</th>\
+                        <td>' + (feature.properties['cam_emerg'] !== null ? Autolinker.link(String(feature.properties['cam_emerg'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">camas psiquiatria</th>\
+                        <td>' + (feature.properties['cam_psiq'] !== null ? Autolinker.link(String(feature.properties['cam_psiq'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">camas ginecologia</th>\
+                        <td>' + (feature.properties['cam_gineco'] !== null ? Autolinker.link(String(feature.properties['cam_gineco'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">camas uti adutos</th>\
+                        <td>' + (feature.properties['cam_utiadu'] !== null ? Autolinker.link(String(feature.properties['cam_utiadu'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">cama neonatologia</th>\
+                        <td>' + (feature.properties['cam_neonat'] !== null ? Autolinker.link(String(feature.properties['cam_neonat'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">camas pediatria</th>\
+                        <td>' + (feature.properties['cam_pediat'] !== null ? Autolinker.link(String(feature.properties['cam_pediat'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">camas uti pedriatico</th>\
+                        <td>' + (feature.properties['cam_utiped'] !== null ? Autolinker.link(String(feature.properties['cam_utiped'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">camas guardia pediatrica</th>\
+                        <td>' + (feature.properties['cam_guaped'] !== null ? Autolinker.link(String(feature.properties['cam_guaped'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">camas unidad coronoraria</th>\
+                        <td>' + (feature.properties['cam_unicor'] !== null ? Autolinker.link(String(feature.properties['cam_unicor'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">helipuerto</th>\
+                        <td>' + (feature.properties['helipuerto'] !== null ? Autolinker.link(String(feature.properties['helipuerto'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">telefono de emergencia</th>\
+                        <td>' + (feature.properties['telef'] !== null ? Autolinker.link(String(feature.properties['telef'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">señal de radio</th>\
+                        <td>' + (feature.properties['senial_rad'] !== null ? Autolinker.link(String(feature.properties['senial_rad'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">ambulancia</th>\
+                        <td>' + (feature.properties['ambulancia'] !== null ? Autolinker.link(String(feature.properties['ambulancia'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">observaciones</th>\
+                        <td>' + (feature.properties['Obs'] !== null ? Autolinker.link(String(feature.properties['Obs'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_hospitales_sc_v1_8_0() {
+            return {
+                pane: 'pane_hospitales_sc_v1_8',
+        rotationAngle: 0.0,
+        rotationOrigin: 'center center',
+        icon: L.icon({
+            iconUrl: 'markers/Edificio de salud.svg',
+            iconSize: [30.4, 30.4]
+        }),
+            }
+        }
+        map.createPane('pane_hospitales_sc_v1_8');
+        map.getPane('pane_hospitales_sc_v1_8').style.zIndex = 408;
+        map.getPane('pane_hospitales_sc_v1_8').style['mix-blend-mode'] = 'normal';
+        var layer_hospitales_sc_v1_8 = new L.geoJson(json_hospitales_sc_v1_8, {
+            attribution: '<a href=""></a>',
+            pane: 'pane_hospitales_sc_v1_8',
+            onEachFeature: pop_hospitales_sc_v1_8,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.marker(latlng, style_hospitales_sc_v1_8_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_hospitales_sc_v1_8);
+        map.addLayer(layer_hospitales_sc_v1_8);
+        function pop_helipuertos_9(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">gid</th>\
+                        <td>' + (feature.properties['gid'] !== null ? Autolinker.link(String(feature.properties['gid'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">fna</th>\
+                        <td>' + (feature.properties['fna'] !== null ? Autolinker.link(String(feature.properties['fna'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">nam</th>\
+                        <td>' + (feature.properties['nam'] !== null ? Autolinker.link(String(feature.properties['nam'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">indicador</th>\
+                        <td>' + (feature.properties['indicador'] !== null ? Autolinker.link(String(feature.properties['indicador'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">tipo</th>\
+                        <td>' + (feature.properties['tipo'] !== null ? Autolinker.link(String(feature.properties['tipo'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">clasificac</th>\
+                        <td>' + (feature.properties['clasificac'] !== null ? Autolinker.link(String(feature.properties['clasificac'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">provincia</th>\
+                        <td>' + (feature.properties['provincia'] !== null ? Autolinker.link(String(feature.properties['provincia'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">coord_geog</th>\
+                        <td>' + (feature.properties['coord_geog'] !== null ? Autolinker.link(String(feature.properties['coord_geog'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">ubicacion</th>\
+                        <td>' + (feature.properties['ubicacion'] !== null ? Autolinker.link(String(feature.properties['ubicacion'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">contacto</th>\
+                        <td>' + (feature.properties['contacto'] !== null ? Autolinker.link(String(feature.properties['contacto'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_helipuertos_9_0() {
+            return {
+                pane: 'pane_helipuertos_9',
+        rotationAngle: 0.0,
+        rotationOrigin: 'center center',
+        icon: L.icon({
+            iconUrl: 'markers/Helipuerto.svg',
+            iconSize: [30.4, 30.4]
+        }),
+            }
+        }
+        map.createPane('pane_helipuertos_9');
+        map.getPane('pane_helipuertos_9').style.zIndex = 409;
+        map.getPane('pane_helipuertos_9').style['mix-blend-mode'] = 'normal';
+        var layer_helipuertos_9 = new L.geoJson(json_helipuertos_9, {
+            attribution: '<a href=""></a>',
+            pane: 'pane_helipuertos_9',
+            onEachFeature: pop_helipuertos_9,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.marker(latlng, style_helipuertos_9_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_helipuertos_9);
+        map.addLayer(layer_helipuertos_9);
+        function pop_localidades_10(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">Id</th>\
+                        <td>' + (feature.properties['id'] !== null ? Autolinker.link(String(feature.properties['id'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Nombre</th>\
+                        <td>' + (feature.properties['nombre_cor'] !== null ? Autolinker.link(String(feature.properties['nombre_cor'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Tipo</th>\
+                        <td>' + (feature.properties['tipo'] !== null ? Autolinker.link(String(feature.properties['tipo'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_localidades_10_0() {
+            return {
+                pane: 'pane_localidades_10',
+        rotationAngle: 0.0,
+        rotationOrigin: 'center center',
+        icon: L.icon({
+            iconUrl: 'markers/localidad.svg',
+            iconSize: [11.4, 11.4]
+        }),
+            }
+        }
+        map.createPane('pane_localidades_10');
+        map.getPane('pane_localidades_10').style.zIndex = 410;
+        map.getPane('pane_localidades_10').style['mix-blend-mode'] = 'normal';
+        var layer_localidades_10 = new L.geoJson(json_localidades_10, {
+            attribution: '<a href=""></a>',
+            pane: 'pane_localidades_10',
+            onEachFeature: pop_localidades_10,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.marker(latlng, style_localidades_10_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_localidades_10);
+        map.addLayer(layer_localidades_10);
+        var baseMaps = {'Satelital': basemap0, ' Mapa Base - Argenmap': basemap1};
+        L.control.layers(baseMaps,{'<img src="legend/localidades_10.png" /> localidades': layer_localidades_10,'<img src="legend/helipuertos_9.png" /> helipuertos': layer_helipuertos_9,'<img src="legend/hospitales_sc_v1_8.png" /> hospitales_sc_v1': layer_hospitales_sc_v1_8,'<img src="legend/Aerdromosyaeropuertos_7.png" /> Aeródromos y aeropuertos': layer_Aerdromosyaeropuertos_7,'<img src="legend/puestos_agvp_6.png" /> puestos_agvp': layer_puestos_agvp_6,'<img src="legend/terminales_omnibus_5.png" /> terminales_omnibus': layer_terminales_omnibus_5,'<img src="legend/PasosdeFronterasInternacionales_4.png" /> Pasos de Fronteras Internacionales': layer_PasosdeFronterasInternacionales_4,'<img src="legend/Puertos_3.png" /> Puertos': layer_Puertos_3,'<img src="legend/red_provincial_2.png" /> red_provincial': layer_red_provincial_2,'<img src="legend/red_nacional_1.png" /> red_nacional': layer_red_nacional_1,'<img src="legend/Zonas_de_Influencia_0.png" /> Zonas_de_Influencia': layer_Zonas_de_Influencia_0,},{collapsed:false}).addTo(map);
+        setBounds();
+        var i = 0;
+        layer_localidades_10.eachLayer(function(layer) {
+            var context = {
+                feature: layer.feature,
+                variables: {}
+            };
+            layer.bindTooltip((layer.feature.properties['nombre_cor'] !== null?String('<div style="color: #000000; font-size: 6pt; font-weight: bold; font-family: \'MS Shell Dlg 2\', sans-serif;">' + layer.feature.properties['nombre_cor']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_localidades_10'});
+            labels.push(layer);
+            totalMarkers += 1;
+              layer.added = true;
+              addLabel(layer, i);
+              i++;
+        });
+        resetLabels([layer_localidades_10]);
+        map.on("zoomend", function(){
+            resetLabels([layer_localidades_10]);
+        });
+        map.on("layeradd", function(){
+            resetLabels([layer_localidades_10]);
+        });
+        map.on("layerremove", function(){
+            resetLabels([layer_localidades_10]);
+        });
+        </script>
+    </body>
+</html>
